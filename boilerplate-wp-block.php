@@ -51,6 +51,14 @@ function namespace_register_blockname() {
 		'render_callback' => 'namespace_dynamic_blockname_render',
 	]);
 	
+	
+	// Register dynamic block using ServerSideRender
+	// ------------------------------
+	register_block_type( 'namespace/dynamic-with-serversiderender', [
+		'editor_script'   => 'namespace-blockname',
+		'render_callback' => 'namespace_dynamic_blockname_render',
+	]);
+	
 }
 
 
