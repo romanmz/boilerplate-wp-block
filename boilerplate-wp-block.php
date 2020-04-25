@@ -39,3 +39,17 @@ function namespace_register_templates() {
 	];
 	$post_type_object->template_lock = false; // 'all' | 'insert' | false
 }
+
+
+// Modify existing blocks
+// ------------------------------
+
+add_action( 'enqueue_block_editor_assets', 'namespace_load_editor_assets' );
+function namespace_load_editor_assets() {
+	wp_enqueue_script( 'namespace-blocks-editor', plugins_url( 'editor/editor.js', __FILE__ ), ['wp-blocks'] );
+}
+
+add_action( 'enqueue_block_assets', 'namespace_load_assets' );
+function namespace_load_assets() {
+	wp_enqueue_style( 'namespace-blocks', plugins_url( 'editor/style.css', __FILE__ ) );
+}
