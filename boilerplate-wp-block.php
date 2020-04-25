@@ -42,4 +42,31 @@ function namespace_register_blockname() {
 		'editor_script' => 'namespace-blockname',
 	]);
 	
+	
+	// Register dynamic block
+	// ------------------------------
+	// !! not sure if it's appropiate to register multiple blocks with the same .js and .css files
+	register_block_type( 'namespace/dynamic-blockname', [
+		'editor_script'   => 'namespace-blockname',
+		'render_callback' => 'namespace_dynamic_blockname_render',
+	]);
+	
+}
+
+
+function namespace_dynamic_blockname_render( $attributes, $content ) {
+	$recent_posts = wp_get_recent_posts([
+		'numberposts' => 1,
+		'post_status' => 'publish',
+	]);
+	if( empty( $recent_posts ) ) {
+		return 'No posts';
+	}
+	$post = $recent_posts[0];
+	$post_id = $post['ID'];
+	return sprintf(
+		'<a class="wp-block-namespace-dynamic-blockname" href="%1$s">%2$s</a>',
+		esc_url( get_permalink( $post_id ) ),
+		esc_html( get_the_title( $post_id ) )
+	);
 }
