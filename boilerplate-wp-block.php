@@ -16,3 +16,26 @@ require_once 'blocks/dynamic-with-serversiderender.php';
 // PHP need to be manually loaded here
 // JS is generated as ES5, not ESNext
 require_once 'blocks/wpcli-block.php';
+
+
+require_once 'blocks/nested-blocks.php';
+
+
+// Default templates for post types
+// ------------------------------
+add_action( 'init', 'namespace_register_templates' );
+function namespace_register_templates() {
+	$post_type_object = get_post_type_object( 'post' );
+	$post_type_object->template = [
+		['core/paragraph', ['placeholder' => 'Add a root-level paragraph']],
+		['core/columns', [], [
+			['core/column', [], [
+				['core/image', []],
+			]],
+			['core/column', [], [
+				['core/paragraph', ['placeholder' => 'Add a inner paragraph']],
+			]],
+		]],
+	];
+	$post_type_object->template_lock = 'insert';
+}
