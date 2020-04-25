@@ -37,5 +37,5 @@ function namespace_register_templates() {
 			]],
 		]],
 	];
-	$post_type_object->template_lock = 'insert';
+	$post_type_object->template_lock = false; // 'all' | 'insert' | false
 }
