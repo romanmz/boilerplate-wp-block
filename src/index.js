@@ -4,6 +4,11 @@ registerBlockType( 'namespace/blockname', {
 	title: 'Sample Block',
 	icon: 'smiley',
 	category: 'layout',
-	edit: () => <div>Hola, mundo!</div>,
-	save: () => <div>Hola, mundo!</div>,
+	example: {},
+	edit({ className }) {
+		return <p className={ className }>Hello World, step 2 (from the editor, in green).</p>;
+	},
+	save() {
+		return <p>Hello World, step 2 (from the frontend, in red).</p>;
+	},
 } );
