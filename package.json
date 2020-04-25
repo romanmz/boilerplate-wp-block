@@ -6,6 +6,7 @@
   "scripts": {
     "start": "wp-scripts start",
     "build": "wp-scripts build",
+    "blocks": "wp-scripts build src/*.js --output-path=blocks --output-filename=[name]/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Roman Martinez",
