@@ -63,3 +63,8 @@ require_once 'blocks/meta-block.php';
 // Sidebars
 // ------------------------------
 require_once 'sidebars/sidebar.php';
+
+
+// Formats
+// ------------------------------
+require_once 'formats/dist/my-custom-format/index.php';
