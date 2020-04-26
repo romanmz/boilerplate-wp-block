@@ -58,3 +58,8 @@ function namespace_load_assets() {
 // Meta Boxes
 // ------------------------------
 require_once 'blocks/meta-block.php';
+
+
+// Sidebars
+// ------------------------------
+require_once 'sidebars/sidebar.php';
