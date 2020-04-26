@@ -43,3 +43,14 @@ function namespace_meta_block_init() {
 		$asset_file['version']
     );
 }
+
+
+// Prepend to content
+add_filter( 'the_content', 'namespace_meta_block_display' );
+function namespace_meta_block_display( $content ) {
+	$value = get_post_meta( get_the_ID(), 'sample_meta_block_field', true );
+	if( $value ) {
+		$content = '<pre>'.esc_html( $value ).'</pre>'.$content;
+	}
+	return $content;
+}
