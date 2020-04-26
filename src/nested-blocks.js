@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 
 
 // A single block can only contain one 'InnerBlock' component
@@ -16,6 +17,7 @@ registerBlockType( 'namespace/nested-blocks', {
 	category: 'layout',
 	// use 'parent' to allow this block only as a child of the given blocks
 	// parent: ['core/column'],
+	description: __( 'Block description.' ),
 	edit: ( { className } ) => {
 		return (
 			<div className={ className }>

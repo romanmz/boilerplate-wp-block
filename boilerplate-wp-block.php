@@ -53,3 +53,8 @@ add_action( 'enqueue_block_assets', 'namespace_load_assets' );
 function namespace_load_assets() {
 	wp_enqueue_style( 'namespace-blocks', plugins_url( 'editor/style.css', __FILE__ ) );
 }
+
+
+// Meta Boxes
+// ------------------------------
+require_once 'blocks/meta-block.php';
