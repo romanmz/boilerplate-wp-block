@@ -139,4 +139,8 @@ registerBlockType( 'namespace/blockname', {
 			/>
 		);
 	},
+	// deprecated:
+	// Add a 'deprecated' property to add information of deprecated versions of the block
+	// As well as migration functions to allow users to seamlessly update the markup to the latest version
+	// https://developer.wordpress.org/block-editor/developers/block-api/block-deprecation/
 } );
