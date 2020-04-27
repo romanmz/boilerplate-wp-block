@@ -26,4 +26,5 @@ registerBlockType( 'namespace/dynamic-blockname', {
 		</a>;
 	} ),
 	// save function not necessary, returns null as the rendering is performed on the server-side
+	// you can also choose to save some placeholder or cached data, in case the plugin gets disabled but the post still needs to show some content
 } );

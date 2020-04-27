@@ -15,8 +15,6 @@ registerBlockType( 'namespace/nested-blocks', {
 	title: 'Sample Nested Blocks',
 	icon: 'smiley',
 	category: 'layout',
-	// use 'parent' to allow this block only as a child of the given blocks
-	// parent: ['core/column'],
 	description: __( 'Block description.' ),
 	edit: ( { className } ) => {
 		return (
