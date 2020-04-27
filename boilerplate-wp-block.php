@@ -143,6 +143,24 @@ function namespace_allowed_block_types( $allowed_block_types, $post ) {
 }
 
 
+// Adding/removing block categories
+// ------------------------------
+add_filter( 'block_categories', 'namespace_block_categories', 10, 2 );
+function namespace_block_categories( $categories, $post ) {
+	if( $post->post_type == 'post' ) {
+		$new_cat = [
+			'slug'  => 'my-category',
+			'title' => __( 'My category', 'my-plugin' ),
+			'icon'  => 'wordpress',
+		];
+		$insert_at = 1;
+		array_splice( $categories, $insert_at, 0, [$new_cat] );
+		// !!! note that the category won't show up on the inserter unless it has at least one block type assigned to it
+	}
+	return $categories;
+}
+
+
 // Meta Boxes
 // ------------------------------
 require_once 'blocks/meta-block.php';
