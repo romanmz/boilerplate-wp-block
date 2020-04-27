@@ -68,3 +68,9 @@ require_once 'sidebars/sidebar.php';
 // Formats
 // ------------------------------
 require_once 'formats/dist/my-custom-format/index.php';
+
+
+// Custom post types
+// ------------------------------
+// To enable the gutenberg editor on custom post types, they need to have the property 'show_in_rest' enabled (the editor relies on the rest api)
+// you can also include the 'template' and 'template_lock' properties during register_post_type()
