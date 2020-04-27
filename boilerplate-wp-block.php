@@ -74,3 +74,11 @@ require_once 'formats/dist/my-custom-format/index.php';
 // ------------------------------
 // To enable the gutenberg editor on custom post types, they need to have the property 'show_in_rest' enabled (the editor relies on the rest api)
 // you can also include the 'template' and 'template_lock' properties during register_post_type()
+
+
+// Experimental features
+// ------------------------------
+// Annotations
+// https://developer.wordpress.org/block-editor/developers/block-api/block-annotations/
+// Patterns
+// https://developer.wordpress.org/block-editor/developers/block-api/block-patterns/
