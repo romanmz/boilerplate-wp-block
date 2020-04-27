@@ -98,6 +98,25 @@ function namespace_register_block_styles() {
 }
 
 
+// Generic filters
+// ------------------------------
+add_action( 'enqueue_block_editor_assets', 'namespace_register_block_filters' );
+function namespace_register_block_filters() {
+	wp_register_script(
+		'namespace-block-filters',
+		plugins_url( 'filters/filters.js', __FILE__ ),
+		[
+			'wp-hooks',
+			'wp-blocks', 'wp-dom-ready', 'wp-edit-post'
+		]
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'namespace_load_block_filters' );
+function namespace_load_block_filters() {
+	wp_enqueue_script( 'namespace-block-filters' );
+}
+
+
 // Meta Boxes
 // ------------------------------
 require_once 'blocks/meta-block.php';
