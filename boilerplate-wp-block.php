@@ -117,6 +117,13 @@ function namespace_load_block_filters() {
 }
 
 
+// Unregistering blocks with PHP
+// ------------------------------
+// There's also a 'unregister_block_type()' function available on PHP,
+// but just like with block styles, it only works to unregister block types that were previously registered using PHP
+// most block types are registered with JS, so it's kinda pointless to do it with PHP unless it's for managing your own custom block types
+
+
 // Meta Boxes
 // ------------------------------
 require_once 'blocks/meta-block.php';
