@@ -124,6 +124,25 @@ function namespace_load_block_filters() {
 // most block types are registered with JS, so it's kinda pointless to do it with PHP unless it's for managing your own custom block types
 
 
+// Hiding block types from the inserter
+// ------------------------------
+// you can, however, just hide blocks from the inserter (without disabling the blocks themselves)
+add_filter( 'allowed_block_types', 'namespace_allowed_block_types', 10, 2 );
+function namespace_allowed_block_types( $allowed_block_types, $post ) {
+	// you can filter by post type if you want
+	if( $post->post_type == 'post' ) {
+		
+		// Using a white-list
+		// $allowed_block_types = ['core/paragraph', 'core/heading'];
+		
+		// Using a black-list
+		// you can't really do a black-list here, as $allowed_block_types can also be a boolean 'true' to allow all tags
+		// and you can't get a true list of all registered blocks with PHP
+	}
+	return $allowed_block_types;
+}
+
+
 // Meta Boxes
 // ------------------------------
 require_once 'blocks/meta-block.php';
