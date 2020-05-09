@@ -182,9 +182,35 @@ require_once 'formats/dist/my-custom-format/index.php';
 // you can also include the 'template' and 'template_lock' properties during register_post_type()
 
 
+// Other features
+// ------------------------------
+
+// Parsers
+// https://developer.wordpress.org/block-editor/developers/filters/parser-filters/
+
+// PHP example:
+// add_filter( 'the_content', 'namespace_parse_content_blocks' );
+function namespace_parse_content_blocks( $content ) {
+	if( is_singular( 'post' ) ) {
+		global $post;
+		$blocks = parse_blocks( $post->post_content );
+		dump( $blocks );
+	}
+	return $content;
+}
+
+// Autocomplete filters
+// https://developer.wordpress.org/block-editor/developers/filters/autocomplete-filters/
+
+
 // Experimental features
 // ------------------------------
+
 // Annotations
 // https://developer.wordpress.org/block-editor/developers/block-api/block-annotations/
+
 // Patterns
 // https://developer.wordpress.org/block-editor/developers/block-api/block-patterns/
+
+// Editor Filters
+// https://developer.wordpress.org/block-editor/developers/filters/editor-filters/
