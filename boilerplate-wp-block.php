@@ -21,6 +21,33 @@ require_once 'blocks/wpcli-block.php';
 require_once 'blocks/nested-blocks.php';
 
 
+// i18n
+// ------------------------------
+add_action( 'init', 'myguten_set_script_translations' );
+function myguten_set_script_translations() {
+	// The third argument is optional, it should point to your local languages folder if you're providing your own translations
+	// WordPress looks for files with these names:
+	// ${textdomain}-${locale}-${scripthandle}.json
+	// ${textdomain}-${locale}-${md5}.json
+	wp_set_script_translations( 'scripthandle', 'textdomain', plugin_dir_path( __FILE__ ).'languages' );
+}
+
+// Providing your own translations:
+// you usually store them on a root 'languages' folder
+
+// 1. Create the main .pot file
+// using wp-cli, run from the root folder:
+// $ wp i18n make-pot ./ languages/textdomain.pot
+
+// 2. Create .po files for each language
+// $ cp textdomain.pot textdomain-locale.po
+
+// 3. Do the translations (either manually or with a tool like https://poedit.net)
+
+// 4. Convert the .po files into .json files
+// $ wp i18n make-json textdomain-locale.po --no-purge
+
+
 // Default templates for post types
 // ------------------------------
 add_action( 'init', 'namespace_register_templates' );

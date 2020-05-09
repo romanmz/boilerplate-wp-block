@@ -9,6 +9,15 @@ import {
 } from '@wordpress/block-editor';
 
 
+// i18n
+// ------------------------------
+// Make sure you also set the PHP hooks
+import { __ } from '@wordpress/i18n';
+// __( string, text-domain )
+// _n( singular-string, plural-string, number, text-domain )
+// _x( string, context, text-domain )
+
+
 // Block Registration
 // ------------------------------
 // https://developer.wordpress.org/block-editor/developers/block-api/block-registration
@@ -125,7 +134,7 @@ registerBlockType( 'namespace/blockname', {
 				<RichText
 					tagName="p"
 					className={ className }
-					placeholder="Placeholder text…"
+					placeholder={ __( 'Placeholder text…', 'namespace' ) }
 					value={ content }
 					formattingControls={['bold', 'italic']}
 					onChange={ onChangeContent }
