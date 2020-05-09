@@ -1,13 +1,38 @@
 (function( wp ) {
-	var registerPlugin = wp.plugins.registerPlugin;
-	var PluginSidebar = wp.editPost.PluginSidebar;
-	var PluginSidebarMoreMenuItem = wp.editPost.PluginSidebarMoreMenuItem; // this line is added
 	var Fragment = wp.element.Fragment; // this line is added
 	var el = wp.element.createElement;
 	var Text = wp.components.TextControl;
 	var withSelect = wp.data.withSelect;
 	var withDispatch = wp.data.withDispatch;
 	var compose = wp.compose.compose;
+	
+	
+	// Using 'SlotFills'
+	// ------------------------------
+	// https://developer.wordpress.org/block-editor/developers/slotfills/plugin-block-settings-menu-item/
+	
+	// 1. import 'registerPlugin'
+	var registerPlugin = wp.plugins.registerPlugin;
+	
+	// 2. import the SlotFills you need
+	var PluginSidebar = wp.editPost.PluginSidebar;
+	var PluginSidebarMoreMenuItem = wp.editPost.PluginSidebarMoreMenuItem;
+	
+	// PluginBlockSettingsMenuItem		// List of settings for individual blocks
+	// ---
+	// PluginPostStatusInfo				// Extra rows inside the "Status and Visibility" section of the Document Settings
+	// PluginDocumentSettingPanel		// Extra panels for the Document Settings section
+	// PluginPostPublishPanel			// Extra panels for the "Post-Publish" section
+	// PluginPrePublishPanel			// Extra panels for the "Pre-Publish" section
+	// ---
+	// PluginSidebar					// Extra buttons for the top editor toolbar, when clicked will open its own settings panel
+	// PluginMoreMenuItem				// List of settings for the editor screen
+	// PluginSidebarMoreMenuItem		// Similar to 'PluginMoreMenuItem' but used to open our custom sidebars created with 'PluginSidebar'
+	
+	// 3. Define a method to render the markup, you need to pass each SlotFill you want to use as a separate object,
+	//    e.g: <PluginSidebar></PluginSidebar>, <PluginSidebarMoreMenuItem></PluginSidebarMoreMenuItem>, etc…
+	
+	// 4. Run the 'registerPlugin' function passing an object with a 'render' property mapped to our function
 	
 	
 	// Getting meta data
