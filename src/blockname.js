@@ -120,11 +120,16 @@ registerBlockType( 'namespace/blockname', {
 					</BlockControls>
 					// InspectorControls
 				}
+				// RichText elements allow you to output the actual markup for the block with an 'contenteditable' attribute,
+				// instead of regular input or textarea elements, this makes it easier to style the blocks so they look the same on the editor as in the frontend
 				<RichText
 					tagName="p"
 					className={ className }
-					onChange={ onChangeContent }
+					placeholder="Placeholder text…"
 					value={ content }
+					formattingControls={['bold', 'italic']}
+					onChange={ onChangeContent }
+					//
 					style={ { textAlign: alignment } }
 				/>
 			</div>
@@ -135,6 +140,7 @@ registerBlockType( 'namespace/blockname', {
 			<RichText.Content
 				tagName="p"
 				value={ props.attributes.content }
+				//
 				className={ `gutenberg-examples-align-${ props.attributes.alignment }` }
 			/>
 		);
