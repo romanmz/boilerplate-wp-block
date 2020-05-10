@@ -209,6 +209,20 @@ require_once 'formats/dist/my-custom-format/index.php';
 // you can also include the 'template' and 'template_lock' properties during register_post_type()
 
 
+// Reference
+// ------------------------------
+
+// Components
+// https://developer.wordpress.org/block-editor/components/
+// https://wordpress.github.io/gutenberg/
+
+// Data Modules
+// https://developer.wordpress.org/block-editor/data/
+
+// Node Packages
+// https://developer.wordpress.org/block-editor/packages/
+
+
 // Other features
 // ------------------------------
 
@@ -229,6 +243,15 @@ function namespace_parse_content_blocks( $content ) {
 // Autocomplete filters
 // https://developer.wordpress.org/block-editor/developers/filters/autocomplete-filters/
 
+// Accessibility
+// https://developer.wordpress.org/block-editor/developers/accessibility/
+
+// Feature flags (WP core, vs Gutenberg plugin)
+// https://developer.wordpress.org/block-editor/developers/feature-flags/
+
+// On stand-alone pages
+// https://developer.wordpress.org/block-editor/developers/platform/custom-block-editor/
+
 
 // Experimental features
 // ------------------------------
@@ -241,3 +264,6 @@ function namespace_parse_content_blocks( $content ) {
 
 // Editor Filters
 // https://developer.wordpress.org/block-editor/developers/filters/editor-filters/
+
+// Block-based Themes
+// https://developer.wordpress.org/block-editor/developers/themes/block-based-themes/

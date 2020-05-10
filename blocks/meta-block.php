@@ -4,6 +4,7 @@
 // '__block_editor_compatible_meta_box' => false,
 // to the list of settings on add_meta_box()
 // if you omit this setting then it defaults to true
+// if set to 'false', the gutenberg editor will display an alert saying that the meta box can't be displayed
 
 // After you've specifically converted a metabox into a block, you can disable the original meta box as deprecated with:
 // '__back_compat_meta_box' => true,
