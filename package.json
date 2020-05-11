@@ -13,6 +13,11 @@
   "author": "Roman Martinez",
   "license": "GPL-2.0-only",
   "devDependencies": {
-    "@wordpress/scripts": "8.0.1"
+    "@wordpress/scripts": "8.0.1",
+    "css-loader": "^3.5.3",
+    "extract-loader": "^5.0.1",
+    "file-loader": "^6.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
   }
 }

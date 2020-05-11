@@ -3,7 +3,42 @@
 Plugin Name: Boilerplate for Gutenberg blocks
 */
 
-require_once 'blocks/blockname.php';
+
+// Load assets
+// ------------------------------
+add_action( 'enqueue_block_assets', 'pluginname_block_assets' );
+function pluginname_block_assets() {
+	wp_enqueue_style(
+		'pluginname-blocks',
+		plugins_url( 'build/style.css', __FILE__ ),
+		['wp-editor'], // ???
+		filemtime( plugin_dir_path( __FILE__ ).'build/style.css' )
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', 'pluginname_block_editor_assets' );
+function pluginname_block_editor_assets() {
+	
+	// Scripts
+	$asset_file = include( plugin_dir_path( __FILE__ ).'build/index.asset.php' );
+	wp_enqueue_script(
+		'pluginname-blocks-editor',
+		plugins_url( 'build/index.js', __FILE__ ),
+		$asset_file['dependencies'],
+		$asset_file['version']
+	);
+	
+	// Styles
+	wp_enqueue_style(
+		'pluginname-blocks-editor',
+		plugins_url( 'build/editor.css', __FILE__ ),
+		['wp-edit-blocks', 'pluginname-blocks'],
+		filemtime( plugin_dir_path( __FILE__ ).'build/editor.css' )
+	);
+}
+
+
+
 require_once 'blocks/dynamic-blockname.php';
 require_once 'blocks/dynamic-with-serversiderender.php';
 

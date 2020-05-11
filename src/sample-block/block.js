@@ -1,3 +1,7 @@
+// Import CSS
+import './style.scss';
+import './editor.scss';
+
 
 // Sample Block
 // ------------------------------
@@ -129,9 +133,9 @@ registerBlockType( 'namespace/blockname', {
 					</BlockControls>
 					// InspectorControls
 				}
-				// RichText elements allow you to output the actual markup for the block with an 'contenteditable' attribute,
-				// instead of regular input or textarea elements, this makes it easier to style the blocks so they look the same on the editor as in the frontend
 				<RichText
+					// RichText elements allow you to output the actual markup for the block with an 'contenteditable' attribute,
+					// instead of regular input or textarea elements, this makes it easier to style the blocks so they look the same on the editor as in the frontend
 					tagName="p"
 					className={ className }
 					placeholder={ __( 'Placeholder text…', 'namespace' ) }
