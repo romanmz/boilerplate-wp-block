@@ -1,6 +1,7 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = env => {
 	return {
 		...defaultConfig,
@@ -26,7 +27,7 @@ module.exports = env => {
 							loader: 'sass-loader',
 							options: {
 								sassOptions: {
-									outputStyle: 'compressed',
+									outputStyle: 'expanded',
 								},
 							},
 						},
@@ -59,6 +60,7 @@ module.exports = env => {
 			new miniCssExtractPlugin({
 				filename: '[name].css',
 			}),
+			new OptimizeCSSAssetsPlugin(),
 			{
 				apply( compiler ) {
 					compiler.hooks.shouldEmit.tap( 'Remove js files created from css chunks', compilation => {
