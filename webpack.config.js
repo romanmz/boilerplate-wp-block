@@ -1,16 +1,12 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
-const glob = require('glob');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
-const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 module.exports = env => {
 	return {
 		...defaultConfig,
-		entry: {
-			index: defaultConfig.entry.index,
-			style: glob.sync( './src/**/style.scss' ),
-			editor: glob.sync( './src/**/editor.scss' ),
+		output: {
+			...defaultConfig.output,
+			publicPath: '/wp-content/plugins/boilerplate-wp-block/build/',
 		},
 		module: {
 			...defaultConfig.module,
@@ -40,14 +36,28 @@ module.exports = env => {
 				},
 			],
 		},
+		optimization: {
+			...defaultConfig.optimization,
+			splitChunks: {
+				cacheGroups: {
+					style: {
+						name: 'style',
+						test: /style\.scss$/,
+						chunks: 'all',
+						enforce: true,
+					},
+					editor: {
+						name: 'editor',
+						test: /editor\.scss$/,
+						chunks: 'all',
+						enforce: true,
+					},
+				},
+			},
+		},
 		plugins: [
-			...defaultConfig.plugins.filter( plugin => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin' ),
-			new DependencyExtractionWebpackPlugin({
-				injectPolyfill: true,
-				combineAssets: true,
-			}),
+			...defaultConfig.plugins,
 			new CleanWebpackPlugin(),
-			new FixStyleOnlyEntriesPlugin(),
 			new miniCssExtractPlugin({
 				filename: '[name].css',
 			}),

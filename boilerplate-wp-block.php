@@ -8,29 +8,36 @@ Plugin Name: Boilerplate for Gutenberg blocks
 // ------------------------------
 add_action( 'enqueue_block_assets', 'pluginname_block_assets' );
 function pluginname_block_assets() {
-	$assets = include( plugin_dir_path( __FILE__ ).'build/assets.php' );
 	wp_enqueue_style(
 		'pluginname-blocks',
 		plugins_url( 'build/style.css', __FILE__ ),
 		['wp-editor'], // ???
-		$assets['style.js']['version']
+		filemtime( plugin_dir_path( __FILE__ ).'build/style.css' )
 	);
 }
 
 add_action( 'enqueue_block_editor_assets', 'pluginname_block_editor_assets' );
 function pluginname_block_editor_assets() {
-	$assets = include( plugin_dir_path( __FILE__ ).'build/assets.php' );
+	
+	// Annoying extra files
+	wp_enqueue_script( 'pluginname-blocks-editor-style',  plugins_url( 'build/style.js', __FILE__ ) );
+	wp_enqueue_script( 'pluginname-blocks-editor-editor', plugins_url( 'build/editor.js', __FILE__ ) );
+	
+	// Scripts
+	$assets = include( plugin_dir_path( __FILE__ ).'build/index.asset.php' );
 	wp_enqueue_script(
 		'pluginname-blocks-editor',
 		plugins_url( 'build/index.js', __FILE__ ),
-		$assets['index.js']['dependencies'],
-		$assets['index.js']['version']
+		$assets['dependencies'],
+		$assets['version']
 	);
+	
+	// Styles
 	wp_enqueue_style(
 		'pluginname-blocks-editor',
 		plugins_url( 'build/editor.css', __FILE__ ),
 		['wp-edit-blocks', 'pluginname-blocks'],
-		$assets['editor.js']['version']
+		filemtime( plugin_dir_path( __FILE__ ).'build/editor.css' )
 	);
 }
 

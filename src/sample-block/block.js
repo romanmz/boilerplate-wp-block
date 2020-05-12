@@ -1,3 +1,6 @@
+// Import CSS
+import './style.scss';
+import './editor.scss';
 
 
 // Sample Block
@@ -137,7 +140,7 @@ registerBlockType( 'namespace/blockname', {
 					className={ className }
 					placeholder={ __( 'Placeholder text…', 'namespace' ) }
 					value={ content }
-					formattingControls={['bold', 'italic']}
+					allowedFormats={['core/bold', 'core/italic']}
 					onChange={ onChangeContent }
 					//
 					style={ { textAlign: alignment } }
