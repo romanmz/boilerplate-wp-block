@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = env => {
+	const isDevelopment = process.env.NODE_ENV !== 'production';
 	return {
 		...defaultConfig,
 		module: {
@@ -60,16 +61,18 @@ module.exports = env => {
 			new miniCssExtractPlugin({
 				filename: '[name].css',
 			}),
-			new OptimizeCSSAssetsPlugin(),
+			isDevelopment ? null : new OptimizeCSSAssetsPlugin(),
 			{
 				apply( compiler ) {
 					compiler.hooks.shouldEmit.tap( 'Remove js files created from css chunks', compilation => {
 						delete compilation.assets['style.js'];
+						delete compilation.assets['style.js.map'];
 						delete compilation.assets['editor.js'];
+						delete compilation.assets['editor.js.map'];
 						return true;
 					});
 				}
 			},
-		],
+		].filter( Boolean ),
 	}
 }
