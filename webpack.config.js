@@ -59,6 +59,15 @@ module.exports = env => {
 			new miniCssExtractPlugin({
 				filename: '[name].css',
 			}),
+			{
+				apply( compiler ) {
+					compiler.hooks.shouldEmit.tap( 'Remove js files created from css chunks', compilation => {
+						delete compilation.assets['style.js'];
+						delete compilation.assets['editor.js'];
+						return true;
+					});
+				}
+			},
 		],
 	}
 }

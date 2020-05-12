@@ -18,12 +18,6 @@ function pluginname_block_assets() {
 
 add_action( 'enqueue_block_editor_assets', 'pluginname_block_editor_assets' );
 function pluginname_block_editor_assets() {
-	
-	// Annoying extra files
-	wp_enqueue_script( 'pluginname-blocks-editor-style',  plugins_url( 'build/style.js', __FILE__ ) );
-	wp_enqueue_script( 'pluginname-blocks-editor-editor', plugins_url( 'build/editor.js', __FILE__ ) );
-	
-	// Scripts
 	$assets = include( plugin_dir_path( __FILE__ ).'build/index.asset.php' );
 	wp_enqueue_script(
 		'pluginname-blocks-editor',
@@ -31,8 +25,6 @@ function pluginname_block_editor_assets() {
 		$assets['dependencies'],
 		$assets['version']
 	);
-	
-	// Styles
 	wp_enqueue_style(
 		'pluginname-blocks-editor',
 		plugins_url( 'build/editor.css', __FILE__ ),
