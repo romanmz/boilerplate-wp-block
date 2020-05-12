@@ -1,4 +1,5 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const glob = require('glob');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
@@ -45,6 +46,7 @@ module.exports = env => {
 				injectPolyfill: true,
 				combineAssets: true,
 			}),
+			new CleanWebpackPlugin(),
 			new FixStyleOnlyEntriesPlugin(),
 			new miniCssExtractPlugin({
 				filename: '[name].css',
