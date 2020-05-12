@@ -1,8 +1,16 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const glob = require('glob');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 module.exports = env => {
 	return {
 		...defaultConfig,
+		entry: {
+			index: defaultConfig.entry.index,
+			style: glob.sync( './src/**/style.scss' ),
+			editor: glob.sync( './src/**/editor.scss' ),
+		},
 		module: {
 			...defaultConfig.module,
 			rules: [
@@ -31,40 +39,16 @@ module.exports = env => {
 				},
 			],
 		},
-		optimization: {
-			...defaultConfig.optimization,
-			splitChunks: {
-				cacheGroups: {
-					'style': {
-						name: 'style',
-						test: /style\.scss$/,
-						chunks: 'all',
-						enforce: true,
-					},
-					'editor': {
-						name: 'editor',
-						test: /editor\.scss$/,
-						chunks: 'all',
-						enforce: true,
-					},
-				},
-			},
-		},
 		plugins: [
-			...defaultConfig.plugins,
+			...defaultConfig.plugins.filter( plugin => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin' ),
+			new DependencyExtractionWebpackPlugin({
+				injectPolyfill: true,
+				combineAssets: true,
+			}),
+			new FixStyleOnlyEntriesPlugin(),
 			new miniCssExtractPlugin({
 				filename: '[name].css',
 			}),
-			// delete useless js files created for the css chunks
-			{
-				apply( compiler ) {
-					compiler.hooks.shouldEmit.tap( 'Remove styles from output', compilation => {
-						delete compilation.assets['style.js'];
-						delete compilation.assets['editor.js'];
-						return true;
-					});
-				}
-			},
 		],
 	}
 }
