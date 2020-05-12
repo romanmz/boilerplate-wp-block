@@ -4,10 +4,6 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = env => {
 	return {
 		...defaultConfig,
-		output: {
-			...defaultConfig.output,
-			publicPath: '/wp-content/plugins/boilerplate-wp-block/build/',
-		},
 		module: {
 			...defaultConfig.module,
 			rules: [
@@ -16,7 +12,9 @@ module.exports = env => {
 					test: /\.s?css$/,
 					include: __dirname+'/src',
 					use: [
-						miniCssExtractPlugin.loader,
+						{
+							loader: miniCssExtractPlugin.loader,
+						},
 						{
 							loader: 'css-loader',
 							options: {
@@ -43,13 +41,13 @@ module.exports = env => {
 					style: {
 						name: 'style',
 						test: /style\.scss$/,
-						chunks: 'all',
+						chunks: 'async',
 						enforce: true,
 					},
 					editor: {
 						name: 'editor',
 						test: /editor\.scss$/,
-						chunks: 'all',
+						chunks: 'async',
 						enforce: true,
 					},
 				},

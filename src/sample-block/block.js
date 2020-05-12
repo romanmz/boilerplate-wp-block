@@ -1,6 +1,6 @@
 // Import CSS
-import './style.scss';
-import './editor.scss';
+import('./style.scss').catch(()=>{});
+import('./editor.scss').catch(()=>{});
 
 
 // Sample Block
