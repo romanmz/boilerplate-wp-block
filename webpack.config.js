@@ -1,4 +1,5 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -6,6 +7,10 @@ module.exports = env => {
 	const isDevelopment = process.env.NODE_ENV !== 'production';
 	return {
 		...defaultConfig,
+		entry: {
+			index: path.resolve( process.cwd(), 'src', 'index.js' ),
+			frontend: path.resolve( process.cwd(), 'src', 'frontend.js' ),
+		},
 		module: {
 			...defaultConfig.module,
 			rules: [

@@ -6,6 +6,21 @@ Plugin Name: Boilerplate for Gutenberg blocks
 
 // Load assets
 // ------------------------------
+
+// Frontend
+add_action( 'wp_enqueue_scripts', 'pluginname_frontend_assets' );
+function pluginname_frontend_assets() {
+	$assets = include( plugin_dir_path( __FILE__ ).'build/frontend.asset.php' );
+	wp_enqueue_script(
+		'pluginname-frontend',
+		plugins_url( 'build/frontend.js', __FILE__ ),
+		$assets['dependencies'],
+		$assets['version'],
+		true
+	);
+}
+
+// Frontend and block editor
 add_action( 'enqueue_block_assets', 'pluginname_block_assets' );
 function pluginname_block_assets() {
 	wp_enqueue_style(
@@ -16,6 +31,7 @@ function pluginname_block_assets() {
 	);
 }
 
+// Block editor
 add_action( 'enqueue_block_editor_assets', 'pluginname_block_editor_assets' );
 function pluginname_block_editor_assets() {
 	$assets = include( plugin_dir_path( __FILE__ ).'build/index.asset.php' );
